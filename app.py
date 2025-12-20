@@ -21,8 +21,19 @@ else:
     # Optionally train it if not loaded
     from dummy_env import DummyEnv
     env = DummyEnv()
-    model.train(env, episodes=500)
-    model.save_model(model_path)
+    # By default skip training at startup to keep the dev server responsive.
+    # To force training on startup set environment variable `EVMODEL_TRAIN=1`.
+    do_train = os.getenv('EVMODEL_TRAIN', '0') == '1'
+    if not do_train:
+        print('Skipping training on startup (dev). Set EVMODEL_TRAIN=1 to enable.')
+        model.save_model(model_path)
+    else:
+        # Use a smaller number of episodes by default to avoid long startup during development.
+        train_episodes = int(os.getenv('EVMODEL_EPISODES', '50'))
+        print(f"Training model for {train_episodes} episodes (dev mode)")
+        model.train(env, episodes=train_episodes)
+        model.save_model(model_path)
+        print("Training completed and model saved.")
 
 @app.route('/predict', methods=['POST'])
 def predict_action():
