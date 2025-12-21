@@ -6,7 +6,7 @@ import os
 import pickle
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, origins=["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"])  # Enable CORS for frontend and backend
 
 # Load your trained model (or create a new one)
 model_path = 'q_model.pkl'

@@ -9,6 +9,10 @@ def main():
     # Train
     model.train(env_function=env, episodes=100)
 
+    # Save the model
+    model.save_model('q_model.pkl')
+    print("Model saved to q_model.pkl")
+
     # Plot rewards
     model.plot_rewards()
 
