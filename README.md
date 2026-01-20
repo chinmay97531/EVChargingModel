@@ -3,6 +3,7 @@
 A Python-based Electric Vehicle (EV) Charging Model with an API layer to run inference using a pre-trained Q-table. This project simulates and serves EV charging-related predictions and can be integrated into larger EV charging platforms or research workflows.
 
 <img width="1461" height="992" alt="EVParking drawio (1)" src="https://github.com/user-attachments/assets/fa18117c-51d1-47c9-b755-6c8fadf6d1ba" />
+
 ---
 
 
